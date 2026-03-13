@@ -47,7 +47,7 @@ export default function App() {
     setIsLoading(true);
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 800); // 800ms feels snappier but still shows the loading state clearly
+    }, 1000); // 1 second simulation as per requirements
     return () => clearTimeout(timer);
   }, [debouncedSearch, filters, sortBy]);
 

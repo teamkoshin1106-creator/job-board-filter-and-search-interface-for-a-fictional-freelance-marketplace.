@@ -73,7 +73,12 @@ export const GigCard: React.FC<GigCardProps> = ({ gig, onClick }) => {
             <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center text-[10px] font-bold text-primary">
               {gig.clientName.charAt(0)}
             </div>
-            <span className="text-xs font-semibold text-text-primary">{gig.clientName}</span>
+            <div>
+              <span className="block text-xs font-semibold text-text-primary leading-none">{gig.clientName}</span>
+              {gig.clientCompany && (
+                <span className="block text-[10px] font-medium text-text-secondary leading-tight mt-0.5">{gig.clientCompany}</span>
+              )}
+            </div>
           </div>
         </div>
       </div>

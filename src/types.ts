@@ -15,6 +15,9 @@ export interface Gig {
   description: string;
   postedDate: string;
   clientName: string;
+  clientCompany?: string;
+  clientType: 'Startup' | 'Enterprise' | 'Agency' | 'Individual';
+  clientRating: number;
   location: string;
 }
 
