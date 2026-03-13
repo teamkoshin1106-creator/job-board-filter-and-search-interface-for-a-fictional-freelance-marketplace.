@@ -53,7 +53,7 @@ GigNest is a single-page application built with React and TypeScript that allows
    ```bash
    npm run dev
    ```
-   The app will start at `http://localhost:3000`
+   The app will start at `http://localhost:3000` 
 
 3. **Build for Production**
    ```bash
@@ -69,7 +69,7 @@ GigNest is a single-page application built with React and TypeScript that allows
 
 #### Browsing Gigs
 1. View all available gigs in the main grid
-2. Hover over any gig card to see more details and hover effects
+2. hover over any gig card to see more details 
 3. Click on a gig card to open the detailed modal with full information
 
 #### Searching
