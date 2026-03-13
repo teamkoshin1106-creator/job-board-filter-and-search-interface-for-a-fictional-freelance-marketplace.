@@ -32,25 +32,39 @@ GigNest is a single-page application built with React and TypeScript that allows
 ## Screenshots
 
 ### 1. Home Page - Browse All Gigs
-The landing page displays all 21 gigs in a clean 2-column grid layout. The left sidebar shows the Filters panel with category checkboxes (Web Development, Mobile Dev, Design), budget range inputs, and a "Reset All Filters" button. The main area shows **21 gigs found** with view toggle buttons (grid/list), sorting dropdown (Newest by default), and gig cards displaying category badges, budget amounts, titles, descriptions, location, posted date, and client name. Each card has a hover effect that slightly lifts it for better interactivity.
+![Home Page](./public/screenshots/01-home.png)
+
+The landing page displays all 21 gigs in a clean 2-column grid layout. The left sidebar shows the Filters panel with category checkboxes (Web Development, Mobile Dev, Design), budget range inputs, and a "Reset All Filters" button. The main area shows **21 gigs found** with view toggle buttons (grid/list), sorting dropdown (Newest by default), and gig cards displaying category badges, budget amounts, titles, descriptions, location, posted date, and client name.
 
 ### 2. Profile Page - Track Your Applications
-The user profile page shows your account information on the left with a profile avatar, username (sdyui), freelancer designation, email, verified badge, and Sign Out button. Below is a Quick Stats section showing applied count and earnings. On the right, the Professional Skills section shows your selected skills (Mobile Dev, Design) with an Edit Skills button. The Applied Gigs section lists jobs you've applied to with briefcase icons, job titles, client names, budgets, and Applied status badges. At the bottom is a light sage green "Build Your Freelance Career" callout encouraging you to add professional skills for personalized recommendations.
+![Profile Page](./public/screenshots/02-profile.png)
+
+The user profile page shows your account information on the left with a profile avatar, username (sdyui), freelancer designation, email, verified badge, and Sign Out button. Below is a Quick Stats section showing applied count and earnings. On the right, the Professional Skills section shows your selected skills (Mobile Dev, Design) with an Edit Skills button. The Applied Gigs section lists jobs you've applied to. At the bottom is a light sage green "Build Your Freelance Career" callout encouraging you to add professional skills.
 
 ### 3. Filtered View - Multi-Filter Search (Recommended + Categories)
-Shows filtered results with the RECOMMENDED badge active and category filters for Web Development and Mobile Dev applied. The result displays **4 gigs found** matching the selected criteria. Active filter tags appear below the results counter showing which filters are active. The cards displayed include Expert React Native Developer, Lead Android Developer, and other relevant gigs within the selected categories.
+![Filtered View](./public/screenshots/03-filtered.png)
+
+Shows filtered results with the RECOMMENDED badge active and category filters for Web Development and Mobile Dev applied. The result displays **4 gigs found** matching the selected criteria. Active filter tags appear below the results counter showing which filters are active.
 
 ### 4. Real-Time Search - Marketing Keyword
-Demonstrates the real-time search functionality with "marketing" typed in the search bar. The results update instantly showing **3 gigs found** all related to marketing: Klaviyo Email Marketing Automation Expert (₹30,000), Performance Marketing / Google Ads Specialist (₹15,000), and Growth-focused Social Media Marketing Manager (₹12,000). The search works across gig titles and descriptions.
+![Search Results](./public/screenshots/04-search.png)
+
+Demonstrates the real-time search functionality with "marketing" typed in the search bar. The results update instantly showing **3 gigs found** all related to marketing: Klaviyo Email Marketing Automation Expert (₹30,000), Performance Marketing / Google Ads Specialist (₹15,000), and Growth-focused Social Media Marketing Manager (₹12,000).
 
 ### 5. Complex Filtering - Search + Budget Range + Experience Level
-Shows advanced filtering capabilities with multiple filters combined: search for "marketing", budget range set to ₹5,000 - ₹30,002, and Expert experience level selected. Active filter tags display showing EXPERT and ₹5000 - ₹30002. The budget inputs show Min: 50 and Max: 0230 (interactive state). Only **1 gig found** - Klaviyo Email Marketing Automation Expert - matching all filter criteria simultaneously, demonstrating AND logic across all filters.
+![Advanced Filtering](./public/screenshots/05-advanced-filter.png)
+
+Shows advanced filtering capabilities with multiple filters combined: search for "marketing", budget range set to ₹5,000 - ₹30,002, and Expert experience level selected. Active filter tags display showing EXPERT and ₹5000 - ₹30002. Only **1 gig found** - Klaviyo Email Marketing Automation Expert - matching all filter criteria simultaneously.
 
 ### 6. Gig Detail Modal - Complete Job Information
-A modal popup showing full details of the Klaviyo Email Marketing Automation Expert gig. Displays the Marketing category badge at the top, job title, and key information badges showing Budget (₹30,000), Experience Level (Expert), Location (Remote), and Posted date (10 Mar 2026). Below is the JOB DESCRIPTION section with detailed information about the email marketing strategy work needed. The ABOUT THE CLIENT section shows hiring details. An "Apply Now" button with briefcase icon sits at the bottom right with green styling. An X button closes the modal.
+![Gig Detail Modal](./public/screenshots/06-gig-detail.png)
+
+A modal popup showing full details of the Klaviyo Email Marketing Automation Expert gig. Displays the Marketing category badge, job title, and key information badges showing Budget (₹30,000), Experience Level (Expert), Location (Remote), and Posted date (10 Mar 2026). Includes JOB DESCRIPTION and ABOUT THE CLIENT sections. An "Apply Now" button sits at the bottom right.
 
 ### 7. Applied Gigs - Application Tracking
-Shows the profile page's Applied Gigs section after applying to a job. Displays the Klaviyo Email Marketing Automation Expert gig with a briefcase icon, full job title, client name (Manoj Bajpayee), and budget (₹30,000) in blue. An "Applied" status badge in emerald green with checkmark indicates successful application. Quick Stats show 1 APPLIED and 0 EARNINGS. The light sage green career builder section below provides motivation to add more skills for better recommendations.
+![Applied Gigs](./public/screenshots/07-applied-gigs.png)
+
+Shows the profile page's Applied Gigs section after applying to a job. Displays the Klaviyo Email Marketing Automation Expert gig with a briefcase icon, full job title, client name (Manoj Bajpayee), and budget (₹30,000). An "Applied" status badge in emerald green with checkmark indicates successful application. Quick Stats show 1 APPLIED and 0 EARNINGS.
 
 ## Tech Stack
 
