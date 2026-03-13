@@ -59,13 +59,33 @@ export default function App() {
   }, []);
 
   const handleSignUp = (userData: UserType) => {
-    setUser(userData);
-    localStorage.setItem('gignest_user', JSON.stringify(userData));
+    const newUser = { ...userData, appliedGigIds: userData.appliedGigIds || [] };
+    setUser(newUser);
+    localStorage.setItem('gignest_user', JSON.stringify(newUser));
     setIsSignUpOpen(false);
     // Automatically show recommended if they have skills
     if (userData.skills.length > 0) {
       setFilters(prev => ({ ...prev, showRecommended: true }));
     }
+  };
+
+  const handleUpdateUser = (updatedUser: UserType) => {
+    setUser(updatedUser);
+    localStorage.setItem('gignest_user', JSON.stringify(updatedUser));
+  };
+
+  const handleApply = (gigId: number) => {
+    if (!user) {
+      setIsSignUpOpen(true);
+      return;
+    }
+    if (user.appliedGigIds.includes(gigId)) return;
+    
+    const updatedUser = {
+      ...user,
+      appliedGigIds: [...user.appliedGigIds, gigId]
+    };
+    handleUpdateUser(updatedUser);
   };
 
   const handleLogout = () => {
@@ -95,8 +115,8 @@ export default function App() {
     return initialGigs
       .filter(gig => {
         // 0. Recommendation Filter: If active, only show gigs matching user skills
-        if (filters.showRecommended && user && user.skills.length > 0) {
-          if (!user.skills.includes(gig.category as Category)) return false;
+        if (filters.showRecommended && user && (user.skills || []).length > 0) {
+          if (!(user.skills || []).includes(gig.category as Category)) return false;
         }
 
         // 1. Search Filter: Checks title and description (case-insensitive)
@@ -149,6 +169,7 @@ export default function App() {
         user={user} 
         onBack={() => setCurrentPage('home')} 
         onLogout={handleLogout} 
+        onUpdateUser={handleUpdateUser}
       />
     );
   }
@@ -429,6 +450,8 @@ export default function App() {
       <GigDetailModal 
         gig={selectedGig} 
         onClose={() => setSelectedGig(null)} 
+        onApply={handleApply}
+        isApplied={user?.appliedGigIds?.includes(selectedGig?.id || -1) || false}
       />
 
       {/* Sign Up Modal */}

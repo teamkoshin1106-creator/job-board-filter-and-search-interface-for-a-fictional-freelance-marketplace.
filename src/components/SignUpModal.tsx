@@ -31,7 +31,7 @@ export const SignUpModal: React.FC<SignUpModalProps> = ({ isOpen, onSignUp, onSk
   };
 
   const handleComplete = () => {
-    onSignUp({ name, skills: selectedSkills });
+    onSignUp({ name, skills: selectedSkills, appliedGigIds: [] });
   };
 
   if (!isOpen) return null;

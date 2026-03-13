@@ -3,20 +3,36 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from 'react';
-import { User as UserType } from '../types';
+import React, { useState } from 'react';
+import { User as UserType, Category } from '../types';
 import { Button } from './ui/Button';
 import { Badge } from './ui/Badge';
-import { ArrowLeft, User, Mail, Shield, Briefcase, Star, Clock } from 'lucide-react';
-import { motion } from 'motion/react';
+import { ArrowLeft, User, Mail, Shield, Briefcase, Star, Clock, Check, Edit2, ExternalLink } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { gigs } from '../data';
 
 interface ProfilePageProps {
   user: UserType;
   onBack: () => void;
   onLogout: () => void;
+  onUpdateUser: (user: UserType) => void;
 }
 
-export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBack, onLogout }) => {
+const ALL_SKILLS: Category[] = ["Web Development", "Mobile Dev", "Design", "Writing", "Marketing"];
+
+export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBack, onLogout, onUpdateUser }) => {
+  const [isEditingSkills, setIsEditingSkills] = useState(false);
+  
+  const appliedGigs = gigs.filter(g => user.appliedGigIds?.includes(g.id));
+
+  const handleToggleSkill = (skill: Category) => {
+    const currentSkills = user.skills || [];
+    const newSkills = currentSkills.includes(skill)
+      ? currentSkills.filter(s => s !== skill)
+      : [...currentSkills, skill];
+    onUpdateUser({ ...user, skills: newSkills });
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -66,7 +82,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBack, onLogout
               <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">Quick Stats</h3>
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-2xl bg-slate-50">
-                  <p className="text-xl font-black text-text-primary">0</p>
+                  <p className="text-xl font-black text-text-primary">{(user.appliedGigIds || []).length}</p>
                   <p className="text-[10px] font-bold text-slate-400 uppercase">Applied</p>
                 </div>
                 <div className="p-4 rounded-2xl bg-slate-50">
@@ -80,48 +96,113 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBack, onLogout
           {/* Right Column: Details */}
           <div className="md:col-span-2 space-y-8">
             <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-              <h2 className="text-xl font-black text-text-primary mb-6">Professional Skills</h2>
-              <div className="flex flex-wrap gap-3">
-                {user.skills.length > 0 ? user.skills.map(skill => (
-                  <Badge key={skill} variant="info" className="px-4 py-2 text-sm">
-                    {skill}
-                  </Badge>
-                )) : (
-                  <p className="text-sm text-slate-400 italic">No skills added yet. Update your profile to show your expertise.</p>
-                )}
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-black text-text-primary">Professional Skills</h2>
+                <button 
+                  onClick={() => setIsEditingSkills(!isEditingSkills)}
+                  className="text-xs font-bold text-primary hover:underline flex items-center"
+                >
+                  {isEditingSkills ? 'Done' : (
+                    <>
+                      <Edit2 size={12} className="mr-1" />
+                      Edit Skills
+                    </>
+                  )}
+                </button>
               </div>
-              <Button variant="ghost" className="mt-6 text-primary font-bold">
-                Edit Skills
-              </Button>
+              
+              <AnimatePresence mode="wait">
+                {isEditingSkills ? (
+                  <motion.div 
+                    key="editing"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="flex flex-wrap gap-2"
+                  >
+                    {ALL_SKILLS.map(skill => (
+                      <button
+                        key={skill}
+                        onClick={() => handleToggleSkill(skill)}
+                        className={`px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
+                          (user.skills || []).includes(skill)
+                            ? 'bg-primary border-primary text-white'
+                            : 'bg-slate-50 border-slate-100 text-slate-500 hover:border-slate-300'
+                        }`}
+                      >
+                        {skill}
+                      </button>
+                    ))}
+                  </motion.div>
+                ) : (
+                  <motion.div 
+                    key="viewing"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="flex flex-wrap gap-3"
+                  >
+                    {(user.skills || []).length > 0 ? (user.skills || []).map(skill => (
+                      <Badge key={skill} variant="info" className="px-4 py-2 text-sm">
+                        {skill}
+                      </Badge>
+                    )) : (
+                      <p className="text-sm text-slate-400 italic">No skills added yet. Update your profile to show your expertise.</p>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
 
             <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
-              <h2 className="text-xl font-black text-text-primary mb-6">Recent Activity</h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="h-10 w-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 shrink-0">
-                    <Clock size={20} />
+              <h2 className="text-xl font-black text-text-primary mb-6">Applied Gigs</h2>
+              <div className="space-y-4">
+                {appliedGigs.length > 0 ? appliedGigs.map(gig => (
+                  <div key={gig.id} className="group flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:border-primary/20 transition-all">
+                    <div className="flex items-center gap-4">
+                      <div className="h-12 w-12 rounded-xl bg-white flex items-center justify-center text-primary shadow-sm">
+                        <Briefcase size={24} />
+                      </div>
+                      <div>
+                        <p className="font-bold text-text-primary group-hover:text-primary transition-colors">{gig.title}</p>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{gig.clientName}</span>
+                          <span className="h-1 w-1 rounded-full bg-slate-300" />
+                          <span className="text-[10px] font-black uppercase tracking-widest text-primary">₹{gig.budget.toLocaleString()}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Badge variant="success" className="bg-emerald-100 text-emerald-700 border-none">Applied</Badge>
+                      <ExternalLink size={14} className="text-slate-300 group-hover:text-primary transition-colors" />
+                    </div>
                   </div>
-                  <div className="ml-4">
-                    <p className="text-sm font-bold text-text-primary">Joined GigNest</p>
-                    <p className="text-xs text-text-secondary mt-1">Welcome to the community! Start exploring gigs today.</p>
-                    <p className="text-[10px] font-bold text-slate-300 uppercase mt-2">Just Now</p>
+                )) : (
+                  <div className="text-center py-8">
+                    <p className="text-sm text-slate-400 italic">You haven't applied to any gigs yet.</p>
+                    <Button variant="ghost" className="mt-4 text-primary font-bold" onClick={onBack}>
+                      Browse Gigs
+                    </Button>
                   </div>
-                </div>
+                )}
               </div>
             </div>
 
-            <div className="bg-indigo-600 rounded-3xl p-8 text-white shadow-xl shadow-indigo-200 relative overflow-hidden">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2 }}
+              className="bg-indigo-600 rounded-3xl p-8 text-white shadow-xl shadow-indigo-200 relative overflow-hidden"
+            >
               <div className="relative z-10">
                 <h2 className="text-2xl font-black mb-2">Complete your profile</h2>
                 <p className="text-indigo-100 text-sm mb-6 max-w-md">Users with complete profiles are 4x more likely to get hired by top clients.</p>
-                <Button className="bg-white text-indigo-600 hover:bg-indigo-50 border-none font-black">
+                <Button className="bg-white text-indigo-600 hover:bg-emerald-500 hover:text-white border-none font-black transition-all duration-300 px-8 py-4 rounded-xl">
                   Finish Setup
                 </Button>
               </div>
               <div className="absolute -right-10 -bottom-10 h-40 w-40 bg-white/10 rounded-full blur-3xl" />
               <div className="absolute -left-10 -top-10 h-40 w-40 bg-indigo-400/20 rounded-full blur-3xl" />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -24,6 +24,7 @@ export interface Gig {
 export interface User {
   name: string;
   skills: Category[];
+  appliedGigIds: number[];
 }
 
 export interface FilterState {

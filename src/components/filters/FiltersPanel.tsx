@@ -20,19 +20,21 @@ interface FilterSectionProps {
 }
 
 const FilterSection: React.FC<FilterSectionProps> = ({ title, children, onClear, showClear }) => (
-  <div className="pt-6 first:pt-0 border-t first:border-t-0 border-slate-50">
-    <div className="flex items-center justify-between mb-4">
-      <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">{title}</h4>
+  <div className="py-10 first:pt-0 border-t first:border-t-0 border-slate-100/80">
+    <div className="flex items-center justify-between mb-8">
+      <h4 className="text-[11px] font-black uppercase tracking-[0.25em] text-slate-400/80">{title}</h4>
       {showClear && onClear && (
         <button 
           onClick={onClear}
-          className="text-[10px] font-bold text-primary hover:underline transition-all"
+          className="px-4 py-1.5 rounded-full bg-primary/5 text-[10px] font-black text-primary border border-primary/10 hover:bg-primary hover:text-white hover:border-primary hover:shadow-md hover:shadow-primary/20 transition-all duration-300 active:scale-95"
         >
           Clear
         </button>
       )}
     </div>
-    {children}
+    <div className="px-1">
+      {children}
+    </div>
   </div>
 );
 
@@ -80,8 +82,8 @@ export const FiltersPanel: React.FC<{
   }, [filters.budgetRange]);
 
   return (
-    <div className={`flex flex-col h-full ${className}`}>
-      <div className="flex-1 overflow-y-auto pr-2 -mr-2 space-y-8">
+    <div className={`flex flex-col h-full bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100/80 ${className}`}>
+      <div className="flex-1 overflow-y-auto pr-4 -mr-4">
         <FilterSection 
           title="Categories" 
           showClear={filters.categories.length > 0}
@@ -169,12 +171,13 @@ export const FiltersPanel: React.FC<{
         </FilterSection>
       </div>
 
-      <div className="pt-8 mt-auto">
+      <div className="pt-10 mt-auto">
         <button 
           onClick={onReset}
-          className="w-full py-4 rounded-2xl border border-slate-100 text-sm font-black text-slate-400 hover:bg-slate-50 hover:text-slate-600 transition-all uppercase tracking-widest"
+          className="group relative w-full py-5 rounded-2xl bg-slate-50 border-2 border-transparent text-xs font-black text-slate-400 hover:text-white transition-all duration-500 uppercase tracking-[0.2em] overflow-hidden"
         >
-          Reset All Filters
+          <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+          <span className="relative z-10">Reset All Filters</span>
         </button>
       </div>
     </div>

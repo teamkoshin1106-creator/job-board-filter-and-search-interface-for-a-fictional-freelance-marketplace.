@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Calendar, MapPin, IndianRupee, Briefcase, User, Send } from 'lucide-react';
+import { X, Calendar, MapPin, IndianRupee, Briefcase, User, Send, Check } from 'lucide-react';
 import { Gig } from '../../types';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
@@ -13,10 +13,16 @@ import { Button } from '../ui/Button';
 interface GigDetailModalProps {
   gig: Gig | null;
   onClose: () => void;
+  onApply: (gigId: number) => void;
+  isApplied: boolean;
 }
 
-export const GigDetailModal: React.FC<GigDetailModalProps> = ({ gig, onClose }) => {
+export const GigDetailModal: React.FC<GigDetailModalProps> = ({ gig, onClose, onApply, isApplied }) => {
   if (!gig) return null;
+
+  const handleApply = () => {
+    onApply(gig.id);
+  };
 
   return (
     <AnimatePresence>
@@ -128,9 +134,26 @@ export const GigDetailModal: React.FC<GigDetailModalProps> = ({ gig, onClose }) 
                 </p>
                 <p className="text-xs text-slate-400">Applications close in 5 days</p>
               </div>
-              <Button className="w-full sm:w-auto px-10 py-7 rounded-2xl text-lg font-black shadow-xl shadow-primary/20">
-                <Send size={20} className="mr-2" />
-                Apply Now
+              <Button 
+                onClick={handleApply}
+                disabled={isApplied}
+                className={`w-full sm:w-auto px-10 py-7 rounded-2xl text-lg font-black shadow-xl transition-all ${
+                  isApplied 
+                    ? 'bg-emerald-500 text-white shadow-emerald-200 cursor-default' 
+                    : 'shadow-primary/20'
+                }`}
+              >
+                {isApplied ? (
+                  <>
+                    <Check size={20} className="mr-2" />
+                    Applied
+                  </>
+                ) : (
+                  <>
+                    <Send size={20} className="mr-2" />
+                    Apply Now
+                  </>
+                )}
               </Button>
             </div>
           </div>
