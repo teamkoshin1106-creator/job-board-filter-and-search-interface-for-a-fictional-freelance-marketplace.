@@ -191,14 +191,14 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ user, onBack, onLogout
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="bg-indigo-600 rounded-3xl p-8 text-white shadow-xl shadow-indigo-200 relative overflow-hidden"
+              className="bg-emerald-100 rounded-3xl p-8 shadow-sm border border-emerald-200 relative overflow-hidden"
             >
               <div className="relative z-10">
-                <h2 className="text-2xl font-black mb-2">Build Your Freelance Career</h2>
-                <p className="text-indigo-100 text-sm mb-6 max-w-md">Add your professional skills above to get personalized gig recommendations from top clients.</p>
+                <h2 className="text-2xl font-black mb-2 text-emerald-900">Build Your Freelance Career</h2>
+                <p className="text-emerald-700 text-sm mb-6 max-w-md">Add your professional skills above to get personalized gig recommendations from top clients.</p>
               </div>
-              <div className="absolute -right-10 -bottom-10 h-40 w-40 bg-white/10 rounded-full blur-3xl" />
-              <div className="absolute -left-10 -top-10 h-40 w-40 bg-indigo-400/20 rounded-full blur-3xl" />
+              <div className="absolute -right-10 -bottom-10 h-40 w-40 bg-emerald-200/20 rounded-full blur-3xl" />
+              <div className="absolute -left-10 -top-10 h-40 w-40 bg-emerald-200/30 rounded-full blur-3xl" />
             </motion.div>
           </div>
         </div>
