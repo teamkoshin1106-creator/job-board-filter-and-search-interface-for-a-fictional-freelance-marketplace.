@@ -32,25 +32,25 @@ GigNest is a single-page application built with React and TypeScript that allows
 ## Screenshots
 
 ### 1. Home Page - Browse All Gigs
-![GigNest Home Page showing 21 gigs in grid layout with filter panel on the left](https://raw.githubusercontent.com/teamkoshin1106-creator/job-board-filter-and-search-interface-for-a-fictional-freelance-marketplace/main/screenshots/01-home.png)
+The landing page displays all 21 gigs in a clean 2-column grid layout. The left sidebar shows the Filters panel with category checkboxes (Web Development, Mobile Dev, Design), budget range inputs, and a "Reset All Filters" button. The main area shows **21 gigs found** with view toggle buttons (grid/list), sorting dropdown (Newest by default), and gig cards displaying category badges, budget amounts, titles, descriptions, location, posted date, and client name. Each card has a hover effect that slightly lifts it for better interactivity.
 
 ### 2. Profile Page - Track Your Applications
-![User profile page showing applied gigs and professional skills with light sage green career builder section](https://raw.githubusercontent.com/teamkoshin1106-creator/job-board-filter-and-search-interface-for-a-fictional-freelance-marketplace/main/screenshots/02-profile.png)
+The user profile page shows your account information on the left with a profile avatar, username (sdyui), freelancer designation, email, verified badge, and Sign Out button. Below is a Quick Stats section showing applied count and earnings. On the right, the Professional Skills section shows your selected skills (Mobile Dev, Design) with an Edit Skills button. The Applied Gigs section lists jobs you've applied to with briefcase icons, job titles, client names, budgets, and Applied status badges. At the bottom is a light sage green "Build Your Freelance Career" callout encouraging you to add professional skills for personalized recommendations.
 
 ### 3. Filtered View - Multi-Filter Search (Recommended + Categories)
-![Filtered results showing 4 gigs matching Web Development and Mobile Dev categories with recommended filter applied](https://raw.githubusercontent.com/teamkoshin1106-creator/job-board-filter-and-search-interface-for-a-fictional-freelance-marketplace/main/screenshots/03-filtered.png)
+Shows filtered results with the RECOMMENDED badge active and category filters for Web Development and Mobile Dev applied. The result displays **4 gigs found** matching the selected criteria. Active filter tags appear below the results counter showing which filters are active. The cards displayed include Expert React Native Developer, Lead Android Developer, and other relevant gigs within the selected categories.
 
 ### 4. Real-Time Search - Marketing Keyword
-![Search results for 'marketing' showing 3 matching gigs with real-time filtering](https://raw.githubusercontent.com/teamkoshin1106-creator/job-board-filter-and-search-interface-for-a-fictional-freelance-marketplace/main/screenshots/04-search.png)
+Demonstrates the real-time search functionality with "marketing" typed in the search bar. The results update instantly showing **3 gigs found** all related to marketing: Klaviyo Email Marketing Automation Expert (₹30,000), Performance Marketing / Google Ads Specialist (₹15,000), and Growth-focused Social Media Marketing Manager (₹12,000). The search works across gig titles and descriptions.
 
 ### 5. Complex Filtering - Search + Budget Range + Experience Level
-![Advanced filtering with marketing search, budget range (₹5,000 - ₹30,002), and Expert experience level showing 1 result](https://raw.githubusercontent.com/teamkoshin1106-creator/job-board-filter-and-search-interface-for-a-fictional-freelance-marketplace/main/screenshots/05-advanced-filter.png)
+Shows advanced filtering capabilities with multiple filters combined: search for "marketing", budget range set to ₹5,000 - ₹30,002, and Expert experience level selected. Active filter tags display showing EXPERT and ₹5000 - ₹30002. The budget inputs show Min: 50 and Max: 0230 (interactive state). Only **1 gig found** - Klaviyo Email Marketing Automation Expert - matching all filter criteria simultaneously, demonstrating AND logic across all filters.
 
 ### 6. Gig Detail Modal - Complete Job Information
-![Modal showing full gig details including description, budget, client info, and Apply Now button](https://raw.githubusercontent.com/teamkoshin1106-creator/job-board-filter-and-search-interface-for-a-fictional-freelance-marketplace/main/screenshots/06-gig-detail.png)
+A modal popup showing full details of the Klaviyo Email Marketing Automation Expert gig. Displays the Marketing category badge at the top, job title, and key information badges showing Budget (₹30,000), Experience Level (Expert), Location (Remote), and Posted date (10 Mar 2026). Below is the JOB DESCRIPTION section with detailed information about the email marketing strategy work needed. The ABOUT THE CLIENT section shows hiring details. An "Apply Now" button with briefcase icon sits at the bottom right with green styling. An X button closes the modal.
 
 ### 7. Applied Gigs - Application Tracking
-![Profile page showing applied gigs with status badge and quick stats for applications](https://raw.githubusercontent.com/teamkoshin1106-creator/job-board-filter-and-search-interface-for-a-fictional-freelance-marketplace/main/screenshots/07-applied-gigs.png)
+Shows the profile page's Applied Gigs section after applying to a job. Displays the Klaviyo Email Marketing Automation Expert gig with a briefcase icon, full job title, client name (Manoj Bajpayee), and budget (₹30,000) in blue. An "Applied" status badge in emerald green with checkmark indicates successful application. Quick Stats show 1 APPLIED and 0 EARNINGS. The light sage green career builder section below provides motivation to add more skills for better recommendations.
 
 ## Tech Stack
 
